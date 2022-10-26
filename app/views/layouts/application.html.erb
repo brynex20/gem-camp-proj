@@ -11,8 +11,40 @@
   </head>
 
   <body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <h1 class="badge rounded-pill bg-warning text-dark">Koda-Camp Project</h1>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'View Lists', posts_path, class: 'nav-link active' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Sign in", new_user_session_path, class: 'nav-link active' unless user_signed_in? %>
+            <%= button_to 'Sign-Out', destroy_user_session_path, class: 'nav-link', method: :delete if user_signed_in? %>
+          </li>
+        </ul>
+        <span class="navbar-text">
+        <%= "Welcome #{current_user.email}" if current_user %>
+      </span>
+      </div>
+    </div>
+  </nav>
+
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
     <%= yield %>
+
   </body>
+  <footer class="text-center fixed-bottom text-lg-start bg-light text-muted">
+    <div class="text-center p-4">
+      © Designed by: <strong style="color: green; ">Bryn E.</strong>
+    </div>
+  </footer>
 </html>
